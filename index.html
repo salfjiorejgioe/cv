@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV — Salah Mehdi (FR/EN)</title>
+  <meta name="description" content="CV bilingue (français/anglais) — Salah Mehdi" />
+  <style>
+    :root{
+      --bg:#0f172a;--panel:#0b1224;--card:#111a33;--text:#e5e7eb;--muted:#94a3b8;--brand:#22d3ee;--accent:#a78bfa;--chip:#1f2a4d;--shadow:0 20px 40px rgba(0,0,0,.35);--radius:18px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:radial-gradient(1200px 800px at 10% 0%,#16213e 0%,var(--bg) 50%),linear-gradient(180deg,#0b1224,var(--bg));}
+    .container{max-width:1000px;margin:40px auto;padding:24px}
+    .toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+    .title{font-size:clamp(26px,4vw,40px);font-weight:800;display:flex;gap:12px;align-items:center}
+    .badge{background:linear-gradient(135deg,var(--brand),var(--accent));color:#081226;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .panel{background:linear-gradient(180deg,var(--card),#0f1833);border:1px solid #1f2b4a;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .header{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;padding:28px;align-items:center}
+    .blurb{line-height:1.7;color:var(--text)}
+    .contact{display:flex;gap:12px;flex-direction:column;background:rgba(255,255,255,0.03);padding:16px;border-radius:14px}
+    .row{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:600}
+    .row a{color:var(--text);text-decoration:none}
+    .row a:hover{text-decoration:underline}
+    .chip{display:inline-block;background:var(--chip);padding:6px 10px;border-radius:999px;margin:6px;font-size:13px;color:#cbd5e1;border:1px solid #27335a}
+    .section{padding:28px;border-top:1px solid #1f2b4a}
+    .section h2{margin:0 0 16px;font-size:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+    .card{background:#0a1430;border:1px solid #21315c;border-radius:14px;padding:20px;line-height:1.6}
+    .sub{color:var(--muted);font-size:14px;line-height:1.5}
+    .lang-select{appearance:none;background:#0b1533;color:var(--text);border:1px solid #24325d;padding:8px 12px;border-radius:12px;font-weight:700;cursor:pointer}
+    .print-btn{appearance:none;background:linear-gradient(135deg,var(--brand),var(--accent));color:#0a1022;border:none;padding:10px 14px;border-radius:12px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(34,211,238,.25)}
+    .print-btn:hover{filter:brightness(1.05)}
+    @media (max-width:760px){.header{grid-template-columns:1fr}}
+    @media print{body{background:#fff}.panel{box-shadow:none}.toolbar{display:none}.chip{border:1px solid #d1d5db}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="toolbar">
+      <div class="title">CV — Salah Mehdi <span class="badge" id="badge">FR</span></div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <select id="language" class="lang-select"><option value="fr">Français</option><option value="en">English</option></select>
+        <button class="print-btn" id="printBtn">Imprimer / Exporter PDF</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="header">
+        <div>
+          <h1 style="margin:0 0 10px;font-size:28px">Salah Mehdi</h1>
+          <p class="blurb" id="summary"></p>
+        </div>
+        <aside class="contact">
+          <div class="row">📍 <span id="location">8110 Rue des Ormes</span></div>
+          <div class="row">📞 <a href="tel:+15145534368">+1 (514) 553-4368</a></div>
+          <div class="row">✉️ <a id="email" href="mailto:salahmesbeh@gmail.com">salahmesbeh@gmail.com</a></div>
+        </aside>
+      </div>
+
+      <section class="section">
+        <h2 id="skillsTitle"></h2>
+        <div class="grid" id="skillsGrid"></div>
+      </section>
+
+      <section class="section">
+        <h2 id="expTitle"></h2>
+        <div class="grid" id="xpGrid"></div>
+      </section>
+
+      <section class="section">
+        <h2 id="eduTitle"></h2>
+        <ul id="eduList"></ul>
+      </section>
+
+      <section class="section">
+        <h2 id="qualitiesTitle"></h2>
+        <div id="chips"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const USER={email:'salahmesbeh@gmail.com'};
+    const i18n={
+      fr:{badge:'FR',print:'Imprimer / Exporter PDF',summary:`Étudiant en informatique passionné par le développement logiciel, le web et les jeux vidéo. Capable de créer des applications complètes (backend, frontend, bases de données) et d'apprendre rapidement de nouvelles technologies. Excellente capacité à travailler en équipe et forte adaptation.`,skills:'Compétences',experience:'Expérience & Projets',education:'Formation',qualities:'Qualités',skillsData:[{title:'Langages',items:['C#','Java','JavaScript','PHP','Lua','SQL','T-SQL']},{title:'Web',items:['HTML','CSS','Frontend + Backend','APIs','Node.js']},{title:'Bases de données',items:['Modélisation','Conception depuis zéro','Oracle','MySQL']},{title:'Jeu vidéo',items:['Unity (C#)','Création d’addons pour les jeux avec Lua','Android Studio']},{title:'Méthodes',items:['POO (C#, Java, JS)','Débogage','Tests','Git / GitHub']}],xpData:[{role:'Développeur Full-Stack — Projet personnel',desc:['Développement complet d’un site web interactif','Backend + Frontend créés de A à Z (Node.js, HTML/CSS/JS)','Intégration d’API et optimisation de la performance']},{role:'Développeur Jeux — Unity & Lua',desc:['Création de jeux fonctionnels (Unity Hub, C#)','Création d’addons pour les jeux avec Lua','Implémentation d’interfaces et optimisation']},{role:'Concepteur de bases de données — Projets académiques',desc:['Conception de schémas relationnels (Oracle / SQL Server)','Tables, triggers, procédures stockées, CRUD','Connexion ADO.NET / PHP (PDO)']}],edu:['Formation technique en informatique — Collège Lionel-Groulx (en cours)'],qualitiesList:['Travailleur acharné','Apprentissage rapide','Esprit d’équipe','Grande capacité d’adaptation','Sens de l’organisation','Résolution de problèmes']},
+      en:{badge:'EN',print:'Print / Export PDF',summary:`Computer Science student passionate about software, web, and game development. Able to build end-to-end applications (backend, frontend, databases) and learn new technologies quickly. Strong teamwork and adaptability.`,skills:'Skills',experience:'Experience & Projects',education:'Education',qualities:'Key Qualities',skillsData:[{title:'Languages',items:['C#','Java','JavaScript','PHP','Lua','SQL','T-SQL']},{title:'Web',items:['HTML','CSS','Frontend + Backend','APIs','Node.js']},{title:'Databases',items:['Modeling','From-scratch design','Oracle','MySQL']},{title:'Game Dev',items:['Unity (C#)','Addons creation for games with Lua','Android Studio']},{title:'Practices',items:['OOP (C#, Java, JS)','Debugging','Testing','Git / GitHub']}],xpData:[{role:'Full-Stack Developer — Personal Project',desc:['Developed a complete interactive website','Backend + Frontend built from scratch (Node.js, HTML/CSS/JS)','API integration and performance optimization']},{role:'Game Developer — Unity & Lua',desc:['Developed functional games (Unity Hub, C#)','Created addons for games using Lua','UI implementation and optimization']},{role:'Database Designer — Academic Projects',desc:['Designed relational schemas (Oracle / SQL Server)','Tables, triggers, stored procedures, CRUD','Connected via ADO.NET / PHP (PDO)']}],edu:['Technical Computer Science program — Collège Lionel-Groulx (in progress)'],qualitiesList:['Hard-working','Fast learner','Team player','Highly adaptable','Organized','Problem-solving mindset']}
+    };
+
+    const els={badge:document.getElementById('badge'),summary:document.getElementById('summary'),skillsTitle:document.getElementById('skillsTitle'),expTitle:document.getElementById('expTitle'),eduTitle:document.getElementById('eduTitle'),qualitiesTitle:document.getElementById('qualitiesTitle'),skillsGrid:document.getElementById('skillsGrid'),xpGrid:document.getElementById('xpGrid'),eduList:document.getElementById('eduList'),chips:document.getElementById('chips'),langSelect:document.getElementById('language'),printBtn:document.getElementById('printBtn'),email:document.getElementById('email')};
+
+    function renderSkills(data){els.skillsGrid.innerHTML=data.map(g=>`<div class='card'><div style='font-weight:800;margin-bottom:6px'>${g.title}</div><div class='sub'>${g.items.join('<br>')}</div></div>`).join('');}
+    function renderXP(data){els.xpGrid.innerHTML=data.map(x=>`<div class='card'><div style='font-weight:800'>${x.role}</div><ul style='margin-top:8px'>${x.desc.map(d=>`<li>${d}</li>`).join('')}</ul></div>`).join('');}
+    function renderEdu(list){els.eduList.innerHTML=list.map(e=>`<li>${e}</li>`).join('');}
+    function renderQualities(list){els.chips.innerHTML=list.map(q=>`<span class='chip'>${q}</span>`).join('');}
+    function setLang(l){const t=i18n[l];els.badge.textContent=t.badge;els.printBtn.textContent=t.print;els.summary.textContent=t.summary;els.skillsTitle.textContent=t.skills;els.expTitle.textContent=t.experience;els.eduTitle.textContent=t.education;els.qualitiesTitle.textContent=t.qualities;renderSkills(t.skillsData);renderXP(t.xpData);renderEdu(t.edu);renderQualities(t.qualitiesList);}  
+
+    setLang('fr');
+    els.langSelect.addEventListener('change',e=>setLang(e.target.value));
+    els.printBtn.addEventListener('click',()=>window.print());
+  </script>
+</body>
+</html>
